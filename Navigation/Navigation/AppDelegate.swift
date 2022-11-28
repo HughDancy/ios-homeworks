@@ -10,10 +10,32 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+   var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let tabBarController = UITabBarController()
+        
+        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.tintColor = .systemGreen
+       
+        let firstViewController = ProfileViewController()
+        let firstNavigationViewController = UINavigationController(rootViewController: firstViewController)
+        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        
+        let secondViewController = FeedViewController()
+        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
+        secondViewController.tabBarItem = UITabBarItem(title: "Back", image: UIImage(systemName: "house"), tag: 1)
+        
+        tabBarController.setViewControllers([firstNavigationViewController,
+                                             secondNavigationController], animated: true)
+        
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+        self.window = window
+      
+        
         return true
     }
 
