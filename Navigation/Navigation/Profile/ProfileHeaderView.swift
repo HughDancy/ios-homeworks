@@ -8,7 +8,9 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-
+    
+    var statusText = ""
+    
     //MARK: - Subview's
     
     private lazy var image: UIImageView = {
@@ -27,7 +29,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var label: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Hipster cat"
         label.font = UIFont(name: "Helvetica-Bold", size: 18)
         
@@ -35,7 +37,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var statusLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Waiting for something..."
         label.font = UIFont(name: "Helvetica-Bold", size: 14)
         label.textColor = .gray
@@ -56,7 +58,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var shadowView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.layer.cornerRadius = 17
         
         view.backgroundColor = .lightGray
@@ -67,7 +69,21 @@ class ProfileHeaderView: UIView {
         
         return view
     }()
-
+    
+    private lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont(name: "Helvetica", size: 15)
+        
+        textField.backgroundColor = .white
+        textField.borderStyle = .none
+        textField.layer.cornerRadius = 12
+        textField.layer.borderWidth = 1
+        
+        textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        
+        return textField
+    }()
+    
     //MARK: - Initial
     
     init() {
@@ -94,6 +110,7 @@ class ProfileHeaderView: UIView {
         addSubview(shadowView)
         addSubview(button)
         addSubview(statusLabel)
+        addSubview(textField)
     }
     
     private func setupLayout() {
@@ -107,8 +124,18 @@ class ProfileHeaderView: UIView {
         label.topAnchor.constraint(equalTo: topAnchor, constant: 27).isActive = true
         label.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
         
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 40).isActive = true
+        statusLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
+        
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16).isActive = true
+        textField.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 16).isActive = true
+        textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
         shadowView.translatesAutoresizingMaskIntoConstraints = false
-        shadowView.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16).isActive = true
+        shadowView.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 16).isActive = true
         shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         shadowView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -119,14 +146,11 @@ class ProfileHeaderView: UIView {
         button.heightAnchor.constraint(equalTo: shadowView.heightAnchor).isActive = true
         button.widthAnchor.constraint(equalTo: shadowView.widthAnchor).isActive = true
         
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
-        statusLabel.bottomAnchor.constraint(equalTo: shadowView.topAnchor, constant: -34).isActive = true
     }
     
     private func buttonSetup() {
         var configuration = UIButton.Configuration.filled()
-        configuration.title = "Show status"
+        configuration.title = "Set status"
         
         button.configuration = configuration
     }
@@ -134,6 +158,11 @@ class ProfileHeaderView: UIView {
     //MARK: - Button Action
     
     @objc func printStatus() {
+        statusLabel.text = statusText
         print(statusLabel.text ?? "")
+    }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? ""
     }
 }

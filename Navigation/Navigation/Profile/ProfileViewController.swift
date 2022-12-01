@@ -26,7 +26,6 @@ class ProfileViewController: UIViewController {
         setupLayout()
         view.backgroundColor = .lightGray
         title = "Profile"
-        
     }
     
     //MARK: - Setup Layout
