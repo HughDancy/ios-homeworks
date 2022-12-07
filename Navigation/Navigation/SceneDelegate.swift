@@ -14,27 +14,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        window?.makeKeyAndVisible()
+        window?.rootViewController = CustomTabBarController()
         
-        let window = UIWindow(windowScene: windowScene)
-        
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .white
-        tabBarController.tabBar.tintColor = .systemGreen
-        
-        let firstViewController = ProfileViewController()
-        let firstNavigationController = UINavigationController(rootViewController: firstViewController)
-        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "person.fill"), tag: 0)
-        
-        let secondViewController = FeedViewController()
-        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
-        secondViewController.tabBarItem = UITabBarItem(title: "Back", image: UIImage(systemName: "archivebox"), tag: 1)
-        
-        tabBarController.setViewControllers([firstNavigationController,
-                                             secondNavigationController], animated: true)
-        
-        window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
-        self.window = window
+//        let window = UIWindow(windowScene: windowScene)
+//
+//        let tabBarController = UITabBarController()
+//        tabBarController.tabBar.backgroundColor = .white
+//        tabBarController.tabBar.tintColor = .systemGreen
+//
+//        let firstViewController = ProfileViewController()
+//        let firstNavigationController = UINavigationController(rootViewController: firstViewController)
+//        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "person.fill"), tag: 0)
+//
+//        let secondViewController = FeedViewController()
+//        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
+//        secondViewController.tabBarItem = UITabBarItem(title: "Back", image: UIImage(systemName: "archivebox"), tag: 1)
+//
+//        tabBarController.setViewControllers([firstNavigationController,
+//                                             secondNavigationController], animated: true)
+//
+//        window.rootViewController = tabBarController
+//        window.makeKeyAndVisible()
+//        self.window = window
         
         
         

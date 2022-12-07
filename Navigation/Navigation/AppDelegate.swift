@@ -16,22 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .white
-        tabBarController.tabBar.tintColor = .systemGreen
+//        let tabBarController = UITabBarController()
+//        tabBarController.tabBar.backgroundColor = .white
+//        tabBarController.tabBar.tintColor = .systemGreen
+//
+//        let firstViewController = ProfileViewController()
+//        let firstNavigationViewController = UINavigationController(rootViewController: firstViewController)
+//        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+//
+//        let secondViewController = FeedViewController()
+//        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
+//        secondViewController.tabBarItem = UITabBarItem(title: "Back", image: UIImage(systemName: "house"), tag: 1)
+//
+//        tabBarController.setViewControllers([firstNavigationViewController,
+//                                             secondNavigationController], animated: true)
         
-        let firstViewController = ProfileViewController()
-        let firstNavigationViewController = UINavigationController(rootViewController: firstViewController)
-        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        
-        let secondViewController = FeedViewController()
-        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
-        secondViewController.tabBarItem = UITabBarItem(title: "Back", image: UIImage(systemName: "house"), tag: 1)
-        
-        tabBarController.setViewControllers([firstNavigationViewController,
-                                             secondNavigationController], animated: true)
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = CustomTabBarController()
         window.makeKeyAndVisible()
         self.window = window
         

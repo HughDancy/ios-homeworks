@@ -11,37 +11,49 @@ class FeedViewController: UIViewController {
     
     //MARK: - Subview's
     
-    lazy var button: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        
-        button.addTarget(self, action: #selector(goToNewViewController), for: .touchDown)
-        return button
+    private lazy var stackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
     }()
+    
+    private lazy var buttonOne = createButton(
+        conf: UIButton.Configuration.filled(),
+        title: "Push me",
+        color: .magenta,
+        radius: 15,
+        clipToBounds: true)
+    
+    private lazy var buttonTwo = createButton(
+        conf: UIButton.Configuration.filled(),
+        title: "PUSH ME!!!",
+        color: .systemIndigo,
+        radius: 15,
+        clipToBounds: true)
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(button)
+        setupHierarchy()
         setupLayout()
-        setupButton()
+        
+        buttonOne.addTarget(self, action: #selector(goToNewViewController), for: .touchDown)
+        buttonTwo.addTarget(self, action: #selector(goToNewViewController), for: .touchDown)
         
         view.backgroundColor = .systemRed
         title = "Feed"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    //MARK: - Button settings
+    //MARK: - Setup Hierarchy
     
-    private func setupButton() {
-        var settings = UIButton.Configuration.filled()
-        settings.title = "Push me"
-        settings.baseBackgroundColor = .systemOrange
-        
-        button.configuration = settings
+    private func setupHierarchy() {
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(buttonOne)
+        stackView.addArrangedSubview(buttonTwo)
     }
     
     //MARK: - Button Action
@@ -54,11 +66,8 @@ class FeedViewController: UIViewController {
     //MARK: - Setup Layout
     
     private func setupLayout() {
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
     }
-    
-    
-    
 }
