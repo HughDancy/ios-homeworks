@@ -158,8 +158,12 @@ class ProfileHeaderView: UIView {
     //MARK: - Button Action
     
     @objc func printStatus() {
-        statusLabel.text = statusText
-        print(statusLabel.text ?? "")
+        if statusText == "" {
+            statusLabel.text = "Waiting for something..."
+        } else {
+            statusLabel.text = statusText
+            print(statusLabel.text ?? "")
+        }
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
