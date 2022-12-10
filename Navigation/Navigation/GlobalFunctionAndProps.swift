@@ -21,3 +21,5 @@ func createButton(conf: UIButton.Configuration, title: String, color: UIColor, r
     
     return button
 }
+
+let loginPlaceHOlders = ["Email or number of phone", "Password"]

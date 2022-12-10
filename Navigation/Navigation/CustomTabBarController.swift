@@ -16,7 +16,7 @@ class CustomTabBarController: UITabBarController {
     }
     
     private func generateTabBar() {
-        let profileVc = ProfileViewController()
+        let profileVc = LogInViewController()
         let feedVc = FeedViewController()
         let firstNavigationController = UINavigationController(rootViewController: profileVc)
         let secondNavigationController = UINavigationController(rootViewController: feedVc)
