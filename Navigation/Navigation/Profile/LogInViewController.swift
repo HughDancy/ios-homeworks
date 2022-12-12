@@ -18,10 +18,6 @@ class LogInViewController: UIViewController {
         table.register(CustomLoginCell.self, forCellReuseIdentifier: "LoginCell")
         table.register(CustomFooter.self, forHeaderFooterViewReuseIdentifier: "footer")
         
-//        let footer = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//        footer.backgroundColor = .red
-//        table.tableFooterView = footer
-        
         return table
     }()
     
@@ -33,41 +29,32 @@ class LogInViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.tintColor = UIColor(named: "ColorSet")
-        
-        return button
-    }()
-    
     //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
-        buttonSettings()
     }
     
     //MARK: - Setup Hierarchy
-    
-    func tableSettings() {
-        table.register(CustomLoginCell.self, forCellReuseIdentifier: "LoginCell")
-    }
-    
+        
     private func setupHierarchy() {
         view.addSubview(imageView)
         view.addSubview(table)
-        view.addSubview(button)
-        
     }
-    
-    private func buttonSettings() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "Log In"
         
-        button.configuration = configuration
+    //MARK: - Button Action
+    
+    @objc func goToProfileView() {
+        let profileVc = ProfileViewController()
+        navigationController?.pushViewController(profileVc, animated: true)
     }
     
     //MARK: - Setup Layout
@@ -81,18 +68,11 @@ class LogInViewController: UIViewController {
         imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 120).isActive = true
+        table.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 80).isActive = true
         table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        table.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 16).isActive = true
-        button.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        table.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
-    
 }
 
    //MARK: - Table Extension
@@ -106,30 +86,31 @@ extension LogInViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoginCell", for: indexPath) as! CustomLoginCell
         cell.selectionStyle = .none
-
-
+        
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.backgroundColor = .systemGray6
         cell.layer.cornerRadius = 10
 
-        
         cell.textField.placeholder = loginPlaceHOlders[indexPath.row]
         if cell.textField.placeholder == "Password" {
             cell.textField.isSecureTextEntry = true
         }
         
-        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer")
-        return header
+    func tableView(_ tableView: UITableView,
+            viewForFooterInSection section: Int) -> UIView? {
+       let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+                   "footer") as! CustomFooter
+        view.button.addTarget(self, action: #selector(goToProfileView), for: .touchDown)
+
+       return view
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 150
+        return 50
     }
     
     

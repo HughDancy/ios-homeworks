@@ -10,39 +10,47 @@ import UIKit
 class CustomFooter: UITableViewHeaderFooterView {
     
     private let identifier = "footer"
+    //MARK: - Subviews
     
-    //MARK: - Subview's
-    
-    lazy var button: UIButton = {
+    let button: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.red
+        button.tintColor = UIColor(named: "ColorSet")
+        button.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
         
         return button
     }()
+
+    //MARK: - Button settings
     
-   //MARK: - Init
+    private func buttonSetup() {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Log In"
+        
+        button.configuration = configuration
+    }
+    
+    //MARK: - Init
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(button)
-        setupLayout()
+        configureContents()
+        buttonSetup()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("Some error")
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-    }
-    
-    //MARK: - Setup Layout
-    
-    private func setupLayout() {
+    func configureContents() {
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-    }
 
+        contentView.addSubview(button)
+   
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            button.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            button.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
 }
