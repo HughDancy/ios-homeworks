@@ -21,12 +21,12 @@ class CustomTabBarController: UITabBarController {
         let firstNavigationController = UINavigationController(rootViewController: profileVc)
         let secondNavigationController = UINavigationController(rootViewController: feedVc)
         viewControllers = [
-            generateVC(viewController: firstNavigationController,
-                       title: "Profile",
-                       image: UIImage(systemName: "person.fill")),
             generateVC(viewController: secondNavigationController,
                        title: "Feed",
-                       image: UIImage(systemName: "archivebox"))
+                       image: UIImage(systemName: "archivebox")),
+            generateVC(viewController: firstNavigationController,
+                       title: "Profile",
+                       image: UIImage(systemName: "person.fill"))
         ]
     }
     

@@ -10,8 +10,6 @@
 		D828780A293B34AD00AAC6AA /* GlobalFunctionAndProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8287809293B34AD00AAC6AA /* GlobalFunctionAndProps.swift */; };
 		D828780C293B36E300AAC6AA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D828780B293B36E300AAC6AA /* CustomTabBarController.swift */; };
 		D828780E2940B8BB00AAC6AA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D828780D2940B8BB00AAC6AA /* LogInViewController.swift */; };
-		D82878102940F70F00AAC6AA /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D828780F2940F70F00AAC6AA /* CustomFooter.swift */; };
-		D8287812294362B200AAC6AA /* CustomLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8287811294362B200AAC6AA /* CustomLoginCell.swift */; };
 		D8575327293218B80013E8CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8575326293218B80013E8CB /* AppDelegate.swift */; };
 		D8575329293218B80013E8CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8575328293218B80013E8CB /* SceneDelegate.swift */; };
 		D8575330293218B90013E8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D857532F293218B90013E8CB /* Assets.xcassets */; };
@@ -28,8 +26,6 @@
 		D8287809293B34AD00AAC6AA /* GlobalFunctionAndProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctionAndProps.swift; sourceTree = "<group>"; };
 		D828780B293B36E300AAC6AA /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		D828780D2940B8BB00AAC6AA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		D828780F2940F70F00AAC6AA /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
-		D8287811294362B200AAC6AA /* CustomLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginCell.swift; sourceTree = "<group>"; };
 		D8575323293218B80013E8CB /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8575326293218B80013E8CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8575328293218B80013E8CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +92,6 @@
 				D857533C2934D6C80013E8CB /* ProfileViewController.swift */,
 				D85753672935E87F0013E8CB /* ProfileHeaderView.swift */,
 				D828780D2940B8BB00AAC6AA /* LogInViewController.swift */,
-				D828780F2940F70F00AAC6AA /* CustomFooter.swift */,
-				D8287811294362B200AAC6AA /* CustomLoginCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -179,8 +173,6 @@
 				D857533B2934D6B50013E8CB /* FeedViewController.swift in Sources */,
 				D85753432934DF890013E8CB /* InfoViewController.swift in Sources */,
 				D85753412934DD890013E8CB /* Model.swift in Sources */,
-				D82878102940F70F00AAC6AA /* CustomFooter.swift in Sources */,
-				D8287812294362B200AAC6AA /* CustomLoginCell.swift in Sources */,
 				D8575329293218B80013E8CB /* SceneDelegate.swift in Sources */,
 				D857533F2934D98E0013E8CB /* PostViewController.swift in Sources */,
 				D85753682935E87F0013E8CB /* ProfileHeaderView.swift in Sources */,

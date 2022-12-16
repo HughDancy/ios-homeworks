@@ -19,7 +19,7 @@ class CustomFooter: UITableViewHeaderFooterView {
         
         return button
     }()
-
+    
     //MARK: - Button settings
     
     private func buttonSetup() {
@@ -43,9 +43,9 @@ class CustomFooter: UITableViewHeaderFooterView {
     
     func configureContents() {
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        
         contentView.addSubview(button)
-   
+        
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
             button.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
