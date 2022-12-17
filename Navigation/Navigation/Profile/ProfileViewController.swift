@@ -27,6 +27,13 @@ class ProfileViewController: UIViewController {
         super.viewWillLayoutSubviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
@@ -34,6 +41,7 @@ class ProfileViewController: UIViewController {
         buttonSettings()
         view.backgroundColor = .lightGray
         title = "Profile"
+        
     }
     
     //MARK: - Setup Hierarchy

@@ -30,7 +30,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.text = "Hipster cat"
+        label.text = "Corey Taylor"
         label.font = UIFont(name: "Helvetica-Bold", size: 18)
         
         return label
