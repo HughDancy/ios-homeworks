@@ -20,6 +20,7 @@
 		D85753412934DD890013E8CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85753402934DD890013E8CB /* Model.swift */; };
 		D85753432934DF890013E8CB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85753422934DF890013E8CB /* InfoViewController.swift */; };
 		D85753682935E87F0013E8CB /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85753672935E87F0013E8CB /* ProfileHeaderView.swift */; };
+		D85FD86B294DD0290077450E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85FD86A294DD0290077450E /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		D85753402934DD890013E8CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D85753422934DF890013E8CB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D85753672935E87F0013E8CB /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		D85FD86A294DD0290077450E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				D857533C2934D6C80013E8CB /* ProfileViewController.swift */,
 				D85753672935E87F0013E8CB /* ProfileHeaderView.swift */,
 				D828780D2940B8BB00AAC6AA /* LogInViewController.swift */,
+				D85FD86A294DD0290077450E /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				D857533F2934D98E0013E8CB /* PostViewController.swift in Sources */,
 				D85753682935E87F0013E8CB /* ProfileHeaderView.swift in Sources */,
 				D828780A293B34AD00AAC6AA /* GlobalFunctionAndProps.swift in Sources */,
+				D85FD86B294DD0290077450E /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
