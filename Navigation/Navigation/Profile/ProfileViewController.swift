@@ -17,7 +17,8 @@ class ProfileViewController: UIViewController {
         table.dataSource = self
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "customCell")
         table.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
-        table.backgroundColor = .white
+        table.backgroundColor = .systemGray6
+        table.showsVerticalScrollIndicator = false
         
         return table
     }()
@@ -33,7 +34,6 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         
-        
     }
     
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         setupHierarchy()
         setupLayout()
        
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         title = "Profile"
         
     }
@@ -51,10 +51,6 @@ class ProfileViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(postTable)
     }
-    
-    //MARK: - Button settings
-    
-   
     
     //MARK: - Setup Layout
     
@@ -67,6 +63,8 @@ class ProfileViewController: UIViewController {
     }
 
 }
+
+  //MARK: - TableView Extension
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -90,14 +88,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
-//            view.button.addTarget(self, action: #selector(goToProfileView), for: .touchDown)
-            
-            return view
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
+            return headerView
         }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 250
     }
-    
 }

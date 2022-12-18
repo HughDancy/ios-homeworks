@@ -90,6 +90,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .systemGray6
             setupHierarchy()
             setupLayout()
             buttonSetup()

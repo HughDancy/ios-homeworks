@@ -16,17 +16,16 @@ class PostTableViewCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .black
-        title.font = UIFont(name: "system", size: 20)
+        title.font = UIFont(name: "Helvetica-Bold", size: 20)
+        title.lineBreakMode = .byClipping
+        title.numberOfLines = 2
+       
     
-        
-        
         return title
     }()
     
     lazy var image: UIImageView = {
         let image = UIImageView()
-//        var picture = ""
-//        image.image = UIImage(named: picture)
         image.contentMode = .scaleAspectFill
         image.backgroundColor = .black
         
@@ -48,6 +47,7 @@ class PostTableViewCell: UITableViewCell {
         var numbers = 0
         likes.text = "Likes: \(numbers)"
         likes.textColor = .black
+        likes.font = UIFont(name: "system", size: 16)
         
         return likes
     }()
@@ -57,6 +57,7 @@ class PostTableViewCell: UITableViewCell {
         var numbers = 0
         views.text = "Views: \(numbers)"
         views.textColor = .black
+        views.font = UIFont(name: "system", size: 16)
         
         return views
     }()
@@ -72,15 +73,17 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(likes)
         contentView.addSubview(views)
         
+        self.selectionStyle = .none
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         
         image.translatesAutoresizingMaskIntoConstraints = false
         image.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
         image.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
         image.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor).isActive = true
-//        image.widthAnchor.constraint(equalToConstant: 200).isActive = true
         image.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         
@@ -100,15 +103,9 @@ class PostTableViewCell: UITableViewCell {
         views.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         views.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         
-        
-        
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
 }
