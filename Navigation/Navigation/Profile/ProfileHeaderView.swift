@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
+    
+    let identifier = "header"
     
     var statusText = ""
     
@@ -86,21 +88,17 @@ class ProfileHeaderView: UIView {
     
     //MARK: - Initial
     
-    init() {
-        super.init(frame: .zero)
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        setupHierarchy()
-        setupLayout()
-        buttonSetup()
-    }
+    override init(reuseIdentifier: String?) {
+            super.init(reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .systemGray6
+            setupHierarchy()
+            setupLayout()
+            buttonSetup()
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     
     //MARK: - Settings
     

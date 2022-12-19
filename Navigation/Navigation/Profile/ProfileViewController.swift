@@ -11,15 +11,18 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Subview's
     
-    let profileHeaderView = ProfileHeaderView()
-    
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
+    private lazy var postTable: UITableView =  {
+        let table = UITableView(frame: .zero, style: .grouped)
+        table.delegate = self
+        table.dataSource = self
+        table.register(PostTableViewCell.self, forCellReuseIdentifier: "customCell")
+        table.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
+        table.backgroundColor = .systemGray6
+        table.showsVerticalScrollIndicator = false
         
-        return button
+        return table
     }()
+    
     
     //MARK: - Lifecycle
     
@@ -31,15 +34,14 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
-        buttonSettings()
-        view.backgroundColor = .lightGray
+       
+        view.backgroundColor = .systemGray6
         title = "Profile"
         
     }
@@ -47,32 +49,50 @@ class ProfileViewController: UIViewController {
     //MARK: - Setup Hierarchy
     
     private func setupHierarchy() {
-        view.addSubview(profileHeaderView)
-        view.addSubview(button)
-    }
-    
-    //MARK: - Button settings
-    
-    private func buttonSettings() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "Change title (?)"
-        configuration.baseBackgroundColor = .red
-        
-        button.configuration = configuration
+        view.addSubview(postTable)
     }
     
     //MARK: - Setup Layout
     
     private func setupLayout() {
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        profileHeaderView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        postTable.translatesAutoresizingMaskIntoConstraints = false
+        postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+
+}
+
+  //MARK: - TableView Extension
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! PostTableViewCell
+        cell.titleLabel.text = posts[indexPath.row].title
+        cell.image.image = UIImage(named: posts[indexPath.row].image)
+        cell.postText.text = posts[indexPath.row].description
+        cell.likes.text = "Likes: \(posts[indexPath.row].likes)"
+        cell.views.text = "Views: \(posts[indexPath.row].views)"
         
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 550
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
+            return headerView
+        }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
     }
 }
