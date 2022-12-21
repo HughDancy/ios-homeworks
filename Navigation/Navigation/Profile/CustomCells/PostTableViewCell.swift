@@ -20,7 +20,6 @@ class PostTableViewCell: UITableViewCell {
         title.lineBreakMode = .byClipping
         title.numberOfLines = 2
        
-    
         return title
     }()
     
