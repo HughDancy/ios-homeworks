@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Post {
     var title: String
@@ -85,4 +86,43 @@ ProfilePost(
     likes: 971,
     views: 1257
     )
+]
+
+let photos = [
+    UIImage(named: "Dostoevsky"),
+    UIImage(named: "matew"),
+    UIImage(named: "bulgakov"),
+    UIImage(named: "haley"),
+    UIImage(named: "hotWater"),
+    UIImage(named: "paramore"),
+    UIImage(named: "monica"),
+    UIImage(named: "phoenix"),
+    UIImage(named: "gadot"),
+    UIImage(named: "margo"),
+    UIImage(named: "macProging"),
+    UIImage(named: "piter"),
+    UIImage(named: "moscow"),
+    UIImage(named: "thai"),
+    UIImage(named: "amazonian"),
+    UIImage(named: "ds2"),
+    UIImage(named: "apple"),
+    UIImage(named: "battarey"),
+    UIImage(named: "xbox"),
+    UIImage(named: "ios"),
+    UIImage(named: "eva"),
+    UIImage(named: "corey"),
+    UIImage(named: "curt"),
+    UIImage(named: "roar"),
+    UIImage(named: "bring"),
+    UIImage(named: "bukowsky"),
+    UIImage(named: "keanu"),
+    UIImage(named: "architects"),
+    UIImage(named: "sam"),
+    UIImage(named: "dicon"),
+    UIImage(named: "sekiro"),
+    UIImage(named: "aloy"),
+    UIImage(named: "snake"),
+    UIImage(named: "doomslayer"),
+    UIImage(named: "slipknot"),
+    UIImage(named: "jobs")
 ]
