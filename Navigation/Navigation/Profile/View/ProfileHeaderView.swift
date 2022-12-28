@@ -62,7 +62,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     lazy var cancelButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .systemGray
         button.alpha = 0.0
@@ -92,6 +92,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.borderStyle = .none
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        textField.leftViewMode = .always
         
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         
@@ -99,7 +101,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     private lazy var backdropView: UIView = {
-       let view = UIView(frame: CGRect(x: 0, y: -100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100))
+        let view = UIView(frame: CGRect(x: 0, y: -100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100))
         view.backgroundColor = .black
         view.alpha = 0.0
         
@@ -112,29 +114,28 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     //MARK: - Initial
     
     override init(reuseIdentifier: String?) {
-            super.init(reuseIdentifier: reuseIdentifier)
+        super.init(reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .systemGray6
-            setupHierarchy()
-            setupLayout()
-            buttonSetup()
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+        setupHierarchy()
+        setupLayout()
+        buttonSetup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Settings
     
     private func setupHierarchy() {
-        addSubview(backdropView)
         addSubview(label)
         addSubview(shadowView)
         addSubview(button)
-        addSubview(cancelButton)
         addSubview(statusLabel)
-        addSubview(image)
         addSubview(textField)
-      
+        addSubview(backdropView)
+        addSubview(cancelButton)
+        addSubview(image)
     }
     
     private func setupLayout() {
@@ -183,7 +184,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.configuration = configuration
     }
     
-    //MARK: - Button Action
+    //MARK: - Button Actions
     
     @objc func printStatus() {
         if statusText == "" {
@@ -199,16 +200,24 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func startAnimation() {
+        
         pictureCenter = image.center
         pictureBounds = image.bounds
         
-        UIView.animate(withDuration: 0.5) { [self] in
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) { [self] in
+            self.image.center = self.backdropView.center
             backdropView.alpha = 0.7
-            image.layer.borderWidth = 0.0
-            image.layer.cornerRadius = 0
-            image.center = backdropView.center
             image.layer.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
             
+            DispatchQueue.main.async {
+                let animation = CABasicAnimation(keyPath: "cornerRadius")
+                animation.duration = 0.5
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+                animation.fromValue = self.image.layer.cornerRadius
+                animation.toValue = 0
+                self.image.layer.add(animation, forKey: nil)
+                self.image.layer.cornerRadius = 0
+            }
         } completion: { _ in
             UIView.animate(withDuration: 0.3, delay: 0.0) { [self] in
                 cancelButton.alpha = 1
@@ -217,9 +226,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func cancelAnitmation() {
-        UIView.animate(withDuration: 0.3) { [self] in 
+        UIView.animate(withDuration: 0.3) { [self] in
             cancelButton.alpha = 0.0
-            
         } completion: { _ in
             UIView.animate(withDuration: 0.5) { [self] in
                 backdropView.alpha = 0.0
