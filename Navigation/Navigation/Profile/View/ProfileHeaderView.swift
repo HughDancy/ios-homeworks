@@ -22,6 +22,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         picture.clipsToBounds = true
         picture.layer.borderWidth = 3
         picture.layer.borderColor = UIColor.white.cgColor
+        picture.isUserInteractionEnabled = true
+        picture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startAnimation)))
         
         let image = UIImage(named: "picture")
         picture.image = image
@@ -59,6 +61,16 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .systemGray
+        button.alpha = 0.0
+        button.addTarget(self, action: #selector(cancelAnitmation), for: .touchDown)
+        
+        return button
+    }()
+    
     private lazy var shadowView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 17
@@ -80,35 +92,50 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.borderStyle = .none
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        textField.leftViewMode = .always
         
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         
         return textField
     }()
     
+    private lazy var backdropView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: -100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100))
+        view.backgroundColor = .black
+        view.alpha = 0.0
+        
+        return view
+    }()
+    
+    private lazy var pictureCenter = image.center
+    private lazy var pictureBounds = image.bounds
+    
     //MARK: - Initial
     
     override init(reuseIdentifier: String?) {
-            super.init(reuseIdentifier: reuseIdentifier)
+        super.init(reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .systemGray6
-            setupHierarchy()
-            setupLayout()
-            buttonSetup()
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+        setupHierarchy()
+        setupLayout()
+        buttonSetup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Settings
     
     private func setupHierarchy() {
-        addSubview(image)
         addSubview(label)
         addSubview(shadowView)
         addSubview(button)
         addSubview(statusLabel)
         addSubview(textField)
+        addSubview(backdropView)
+        addSubview(cancelButton)
+        addSubview(image)
     }
     
     private func setupLayout() {
@@ -144,6 +171,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.heightAnchor.constraint(equalTo: shadowView.heightAnchor).isActive = true
         button.widthAnchor.constraint(equalTo: shadowView.widthAnchor).isActive = true
         
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        cancelButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        
     }
     
     private func buttonSetup() {
@@ -153,7 +184,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.configuration = configuration
     }
     
-    //MARK: - Button Action
+    //MARK: - Button Actions
     
     @objc func printStatus() {
         if statusText == "" {
@@ -166,5 +197,45 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? ""
+    }
+    
+    @objc func startAnimation() {
+        
+        pictureCenter = image.center
+        pictureBounds = image.bounds
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) { [self] in
+            self.image.center = self.backdropView.center
+            backdropView.alpha = 0.7
+            image.layer.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+            
+            DispatchQueue.main.async {
+                let animation = CABasicAnimation(keyPath: "cornerRadius")
+                animation.duration = 0.5
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+                animation.fromValue = self.image.layer.cornerRadius
+                animation.toValue = 0
+                self.image.layer.add(animation, forKey: nil)
+                self.image.layer.cornerRadius = 0
+            }
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 0.0) { [self] in
+                cancelButton.alpha = 1
+            }
+        }
+    }
+    
+    @objc func cancelAnitmation() {
+        UIView.animate(withDuration: 0.3) { [self] in
+            cancelButton.alpha = 0.0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) { [self] in
+                backdropView.alpha = 0.0
+                image.layer.borderWidth = 3
+                image.layer.cornerRadius = 60
+                image.center = pictureCenter
+                image.bounds = pictureBounds
+            }
+        }
     }
 }
