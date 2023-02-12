@@ -69,6 +69,16 @@ class LogInViewController: UIViewController{
     return textField
     }()
     
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Полня логина и пароля не дозаполнены!"
+        label.font = UIFont(name: "HelveticaNeue", size: 15)
+        label.textColor = .red
+        label.isHidden = true
+        
+        return label
+    }()
+    
     private lazy var loginButton: UIButton = {
        let button = UIButton()
         button.backgroundColor = UIColor(red: 0.29, green: 0.52, blue: 0.80, alpha: 1)
@@ -119,6 +129,7 @@ class LogInViewController: UIViewController{
         stackView.addArrangedSubview(passwordTextField)
         scrollView.addSubview(imageView)
         scrollView.addSubview(stackView)
+        scrollView.addSubview(warningLabel)
         scrollView.addSubview(loginButton)
 
     }
@@ -127,7 +138,25 @@ class LogInViewController: UIViewController{
     
     @objc func goToProfileView() {
         let profileVc = ProfileViewController()
-        navigationController?.pushViewController(profileVc, animated: true)
+        if loginTextField.text == "" && passwordTextField.text == "" || (loginTextField.text?.count ?? 0) < 10 && (passwordTextField.text?.count ?? 0) < 10 {
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: stackView.center.x - 10, y: stackView.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: stackView.center.x + 10, y: stackView.center.y))
+            stackView.layer.add(animation, forKey: "position")
+            warningLabel.isHidden = false
+        } else if loginTextField.text != "user@mail.com" && passwordTextField.text != "1234"{
+            let controller = UIAlertController(title: "Error", message: "Wrong login or password", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel)
+            controller.addAction(alertAction)
+            present(controller, animated: true)
+           
+        } else {
+            navigationController?.pushViewController(profileVc, animated: true)
+        }
+        
     }
     
     //MARK: - ScrollView function
@@ -139,7 +168,10 @@ class LogInViewController: UIViewController{
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
         guard let ks = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:  ks.height - view.safeAreaInsets.bottom + 85, right: 0)
+        DispatchQueue.main.async {
+            self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:  ks.height - self.view.safeAreaInsets.bottom + 105, right: 0)
+        }
+        
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
@@ -167,10 +199,14 @@ class LogInViewController: UIViewController{
         stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16).isActive = true
         stackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -16).isActive = true
+//        stackView.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -16).isActive = true
+        
+        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+        warningLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16).isActive = true
+        warningLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16).isActive = true
+        loginButton.topAnchor.constraint(equalTo: warningLabel.bottomAnchor, constant: 12).isActive = true
         loginButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16).isActive = true
         loginButton.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true

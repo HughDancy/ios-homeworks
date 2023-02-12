@@ -90,17 +90,17 @@ class PostTableViewCell: UITableViewCell {
         postText.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16).isActive = true
         postText.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         postText.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        postText.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        postText.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -145).isActive = true
         
         likes.translatesAutoresizingMaskIntoConstraints = false
-        likes.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 16).isActive = true
+        likes.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 20).isActive = true
         likes.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        likes.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        likes.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
         views.translatesAutoresizingMaskIntoConstraints = false
-        views.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 16).isActive = true
+        views.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 20).isActive = true
         views.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        views.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        views.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
     }
     

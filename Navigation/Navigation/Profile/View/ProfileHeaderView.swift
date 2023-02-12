@@ -188,7 +188,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc func printStatus() {
         if statusText == "" {
-            statusLabel.text = "Waiting for something..."
+            statusLabel.text = "Wiating for something.."
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+            textField.layer.add(animation, forKey: "position")
         } else {
             statusLabel.text = statusText
             print(statusLabel.text ?? "")
