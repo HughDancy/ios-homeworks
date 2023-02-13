@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = true
+        postTable.reloadData()
     }
     
     override func viewDidLoad() {
@@ -57,7 +58,7 @@ class ProfileViewController: UIViewController {
         postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        postTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
 }
@@ -67,17 +68,14 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return section == 0 ? 1 : posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == 0 {
             let cell = PhotosTableViewCell()
             return cell
@@ -85,26 +83,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! PostTableViewCell
             cell.titleLabel.text = posts[indexPath.row].title
             cell.image.image = UIImage(named: posts[indexPath.row].image)
-            cell.postText.text = posts[indexPath.row].description
             cell.likes.text = "Likes: \(posts[indexPath.row].likes)"
+            cell.postText.text = posts[indexPath.row].briefDescription
             cell.views.text = "Views: \(posts[indexPath.row].views)"
             
             return cell
         }
     }
     
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 170 : 550
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
         return section == 0 ? headerView : nil
         }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 250 : 0
-    }
 }

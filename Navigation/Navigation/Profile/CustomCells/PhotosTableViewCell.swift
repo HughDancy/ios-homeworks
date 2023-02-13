@@ -84,12 +84,15 @@ class PhotosTableViewCell: UITableViewCell {
         stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 4).isActive = true
         stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 12).isActive = true
         stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: previewPhoto.topAnchor, constant: -2).isActive = true
+//        stackView.heightAnchor.constraint(equalToConstant: label.bounds.height).isActive = true
        
         previewPhoto.translatesAutoresizingMaskIntoConstraints = false
         previewPhoto.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 2).isActive = true
         previewPhoto.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 12).isActive = true
         previewPhoto.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -12).isActive = true
         previewPhoto.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        previewPhoto.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -4).isActive = true
         
     }
     

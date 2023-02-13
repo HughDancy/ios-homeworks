@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D825AD6A295C8E50005C03DF /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D825AD69295C8E50005C03DF /* LaunchViewController.swift */; };
 		D828780A293B34AD00AAC6AA /* GlobalFunctionAndProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8287809293B34AD00AAC6AA /* GlobalFunctionAndProps.swift */; };
 		D828780C293B36E300AAC6AA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D828780B293B36E300AAC6AA /* CustomTabBarController.swift */; };
 		D828780E2940B8BB00AAC6AA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D828780D2940B8BB00AAC6AA /* LogInViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D825AD69295C8E50005C03DF /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		D8287809293B34AD00AAC6AA /* GlobalFunctionAndProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctionAndProps.swift; sourceTree = "<group>"; };
 		D828780B293B36E300AAC6AA /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		D828780D2940B8BB00AAC6AA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D825AD68295C8E3A005C03DF /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D825AD69295C8E50005C03DF /* LaunchViewController.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		D857531A293218B80013E8CB = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		D8575325293218B80013E8CB /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				D825AD68295C8E3A005C03DF /* LaunchScreen */,
 				D85FD875295051BE0077450E /* App */,
 				D85FD876295051CD0077450E /* Resources */,
 				D85FD87129504D3E0077450E /* Model */,
@@ -262,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8575327293218B80013E8CB /* AppDelegate.swift in Sources */,
+				D825AD6A295C8E50005C03DF /* LaunchViewController.swift in Sources */,
 				D85FD87E29518A610077450E /* PhotosViewController.swift in Sources */,
 				D85FD87A2950B9AE0077450E /* PhotosCollectionViewCell.swift in Sources */,
 				D857533D2934D6C80013E8CB /* ProfileViewController.swift in Sources */,
