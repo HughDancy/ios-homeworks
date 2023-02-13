@@ -32,7 +32,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return picture
     }()
     
-    private lazy var label: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Corey Taylor"
         label.font = UIFont(name: "Helvetica-Bold", size: 18)
@@ -128,7 +128,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     //MARK: - Settings
     
     private func setupHierarchy() {
-        addSubview(label)
+        addSubview(nameLabel)
         addSubview(shadowView)
         addSubview(button)
         addSubview(statusLabel)
@@ -144,32 +144,37 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         image.heightAnchor.constraint(equalToConstant: 120).isActive = true
         image.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        image.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -32).isActive = true
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 27).isActive = true
-        label.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor, constant: -30).isActive = true
         
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 40).isActive = true
+        statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true
         statusLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20).isActive = true
         
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16).isActive = true
+        textField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10).isActive = true
         textField.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 16).isActive = true
         textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        textField.bottomAnchor.constraint(equalTo: shadowView.topAnchor, constant: -16).isActive = true
         
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 16).isActive = true
         shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         shadowView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: shadowView.centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: shadowView.centerYAnchor).isActive = true
         button.heightAnchor.constraint(equalTo: shadowView.heightAnchor).isActive = true
         button.widthAnchor.constraint(equalTo: shadowView.widthAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
