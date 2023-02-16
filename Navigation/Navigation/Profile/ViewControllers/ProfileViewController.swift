@@ -118,4 +118,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         swipeActions.performsFirstActionWithFullSwipe = false 
            return swipeActions
     }
+    
+    func add() {
+        
+    }
 }
