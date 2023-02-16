@@ -95,4 +95,27 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
         return section == 0 ? headerView : nil
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = FeedPostViewController()
+        vc.configurateContent(with: indexPath.row)
+        let nc =  UINavigationController(rootViewController: vc)
+        nc.modalPresentationStyle = .fullScreen
+        navigationController?.present(nc, animated: true)
+        posts[indexPath.row].views += 1
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {  (contextualAction, view, boolValue) in
+               tableView.deleteRows(at: [indexPath], with: .automatic)
+            boolValue(true)
+           }
+        deleteAction.backgroundColor = .red
+        
+           let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipeActions.performsFirstActionWithFullSwipe = false 
+           return swipeActions
+    }
 }
