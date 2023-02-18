@@ -22,8 +22,6 @@ func createButton(conf: UIButton.Configuration, title: String, color: UIColor, r
     return button
 }
 
-let loginPlaceHOlders = ["Email or number of phone", "Password"]
-
 let login = "user@mail.com"
 let password = "1234"
 
@@ -33,4 +31,8 @@ extension String{
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
        }  
+}
+
+protocol TapLike: AnyObject {
+    func toTap()
 }

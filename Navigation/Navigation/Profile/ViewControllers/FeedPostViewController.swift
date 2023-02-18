@@ -33,6 +33,7 @@ class FeedPostViewController: UIViewController {
         textView.textAlignment = .justified
         textView.font = UIFont(name: "HelveticaNeue", size: 16.0)
         textView.textColor = .black
+        textView.showsVerticalScrollIndicator = false
         
         return textView
     }()

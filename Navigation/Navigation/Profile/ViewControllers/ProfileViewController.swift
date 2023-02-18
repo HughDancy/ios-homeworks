@@ -81,6 +81,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! PostTableViewCell
+            cell.cellIndex = indexPath.row
             cell.titleLabel.text = posts[indexPath.row].title
             cell.image.image = UIImage(named: posts[indexPath.row].image)
             cell.likes.text = "Likes: \(posts[indexPath.row].likes)"
@@ -119,5 +120,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         swipeActions.performsFirstActionWithFullSwipe = true
         return swipeActions
+    }
+    
+    @objc func tapLike() {
+        print("Blyaha muha!!!")
+    }
+}
+
+extension ProfileViewController: TapLike {
+    func toTap() {
+        postTable.reloadData()
+      
     }
 }
