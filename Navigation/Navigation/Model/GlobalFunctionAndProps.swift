@@ -22,24 +22,15 @@ func createButton(conf: UIButton.Configuration, title: String, color: UIColor, r
     return button
 }
 
-func createTextField(withText placeholder: String, secureText: Bool) -> UITextField {
-    let textField = UITextField()
-   
-   
-    textField.textColor = .black
-//    textField.backgroundColor = .systemGray6
-//    textField.layer.borderWidth = 0.5
-//    textField.layer.borderColor = UIColor.lightGray.cgColor
-//    textField.autocapitalizationType = .none
-//    textField.font?.withSize(16)
-//    textField.layer.cornerRadius = 10
-    
-    
-    
-    textField.placeholder = placeholder
-    textField.isSecureTextEntry = secureText
-    
-    return textField
-}
-
 let loginPlaceHOlders = ["Email or number of phone", "Password"]
+
+let login = "user@mail.com"
+let password = "1234"
+
+extension String{
+    func isValidEmail() -> Bool {
+        // here, `try!` will always succeed because the pattern is valid
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+       }  
+}

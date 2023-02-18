@@ -26,7 +26,8 @@ class PostTableViewCell: UITableViewCell {
     lazy var image: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.backgroundColor = .black
+        image.backgroundColor = .white
+        image.clipsToBounds = true
         
         return image
     }()

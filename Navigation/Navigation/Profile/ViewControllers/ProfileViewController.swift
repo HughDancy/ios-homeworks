@@ -107,19 +107,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {  (contextualAction, view, boolValue) in
-               tableView.deleteRows(at: [indexPath], with: .automatic)
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) {  (contextualAction, view, boolValue) in
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             boolValue(true)
-           }
-        deleteAction.backgroundColor = .red
+        }
         
-           let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        swipeActions.performsFirstActionWithFullSwipe = false 
-           return swipeActions
-    }
-    
-    func add() {
-        
+        deleteAction.backgroundColor = .systemGray6
+        deleteAction.image = UIImage(named: "deleteIcon")
+                
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipeActions.performsFirstActionWithFullSwipe = true
+        return swipeActions
     }
 }
