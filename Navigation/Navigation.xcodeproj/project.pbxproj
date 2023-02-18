@@ -27,7 +27,6 @@
 		D85FD87C29517DAC0077450E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85FD87B29517DAC0077450E /* PhotoViewController.swift */; };
 		D85FD87E29518A610077450E /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85FD87D29518A610077450E /* PhotosViewController.swift */; };
 		D8C05A0C299A4CEA0013F8FD /* FeedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C05A0B299A4CEA0013F8FD /* FeedPostViewController.swift */; };
-		D8C05A0E299A584D0013F8FD /* Shame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C05A0D299A584D0013F8FD /* Shame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		D85FD87B29517DAC0077450E /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		D85FD87D29518A610077450E /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D8C05A0B299A4CEA0013F8FD /* FeedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostViewController.swift; sourceTree = "<group>"; };
-		D8C05A0D299A584D0013F8FD /* Shame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +164,6 @@
 				D85FD87B29517DAC0077450E /* PhotoViewController.swift */,
 				D85FD87D29518A610077450E /* PhotosViewController.swift */,
 				D8C05A0B299A4CEA0013F8FD /* FeedPostViewController.swift */,
-				D8C05A0D299A584D0013F8FD /* Shame.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -293,7 +290,6 @@
 				D857533F2934D98E0013E8CB /* PostViewController.swift in Sources */,
 				D85FD8782950A26D0077450E /* PhotosTableViewCell.swift in Sources */,
 				D85753682935E87F0013E8CB /* ProfileHeaderView.swift in Sources */,
-				D8C05A0E299A584D0013F8FD /* Shame.swift in Sources */,
 				D828780A293B34AD00AAC6AA /* GlobalFunctionAndProps.swift in Sources */,
 				D85FD86B294DD0290077450E /* PostTableViewCell.swift in Sources */,
 				D85FD87C29517DAC0077450E /* PhotoViewController.swift in Sources */,

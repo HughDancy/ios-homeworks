@@ -81,6 +81,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! PostTableViewCell
+            cell.cellIndex = indexPath.row
             cell.titleLabel.text = posts[indexPath.row].title
             cell.image.image = UIImage(named: posts[indexPath.row].image)
             cell.likes.text = "Likes: \(posts[indexPath.row].likes)"
@@ -107,19 +108,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {  (contextualAction, view, boolValue) in
-               tableView.deleteRows(at: [indexPath], with: .automatic)
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) {  (contextualAction, view, boolValue) in
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             boolValue(true)
-           }
-        deleteAction.backgroundColor = .red
+        }
         
-           let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        swipeActions.performsFirstActionWithFullSwipe = false 
-           return swipeActions
+        deleteAction.backgroundColor = .systemGray6
+        deleteAction.image = UIImage(named: "deleteIcon")
+                
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipeActions.performsFirstActionWithFullSwipe = true
+        return swipeActions
     }
     
-    func add() {
-        
+    @objc func tapLike() {
+        print("Blyaha muha!!!")
+    }
+}
+
+extension ProfileViewController: TapLike {
+    func toTap() {
+        postTable.reloadData()
+      
     }
 }

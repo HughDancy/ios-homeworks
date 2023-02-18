@@ -13,6 +13,10 @@ class PostTableViewCell: UITableViewCell {
     
     //MARK: - Subview's
     
+    weak var delegate: TapLike?
+    
+    var cellIndex = 0
+    
     lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .black
@@ -26,7 +30,8 @@ class PostTableViewCell: UITableViewCell {
     lazy var image: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.backgroundColor = .black
+        image.backgroundColor = .white
+        image.clipsToBounds = true
         
         return image
     }()
@@ -48,6 +53,8 @@ class PostTableViewCell: UITableViewCell {
         likes.text = "Likes: \(numbers)"
         likes.textColor = .black
         likes.font = UIFont(name: "system", size: 16)
+        likes.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapToLike)))
+        likes.isUserInteractionEnabled = true
 
         return likes
     }()
@@ -107,5 +114,13 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Gesture action
+    
+    @objc func tapToLike() {
+        posts[cellIndex].likes += 1
+        likes.text = "Likes: \(posts[cellIndex].likes)"
+        delegate?.toTap()
     }
 }

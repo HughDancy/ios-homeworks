@@ -71,7 +71,6 @@ class LogInViewController: UIViewController{
     
     private let warningLabel: UILabel = {
         let label = UILabel()
-        label.text = "Полня логина и пароля не дозаполнены!"
         label.font = UIFont(name: "HelveticaNeue", size: 15)
         label.textColor = .red
         label.isHidden = true
@@ -138,7 +137,9 @@ class LogInViewController: UIViewController{
     
     @objc func goToProfileView() {
         let profileVc = ProfileViewController()
-        if loginTextField.text == "" && passwordTextField.text == "" || (loginTextField.text?.count ?? 0) < 10 && (passwordTextField.text?.count ?? 0) < 10 {
+        
+        switch (loginTextField.text != nil) && (passwordTextField.text != nil)  {
+        case  (loginTextField.text == "") == true && (passwordTextField.text == "") == true || loginTextField.text!.count < 6 && passwordTextField.text!.count < 4 :
             let animation = CABasicAnimation(keyPath: "position")
             animation.duration = 0.07
             animation.repeatCount = 4
@@ -146,17 +147,21 @@ class LogInViewController: UIViewController{
             animation.fromValue = NSValue(cgPoint: CGPoint(x: stackView.center.x - 10, y: stackView.center.y))
             animation.toValue = NSValue(cgPoint: CGPoint(x: stackView.center.x + 10, y: stackView.center.y))
             stackView.layer.add(animation, forKey: "position")
+            warningLabel.text = "Полня логина и пароля не дозаполнены!"
             warningLabel.isHidden = false
-        } else if loginTextField.text != "user@mail.com" && passwordTextField.text != "1234"{
+        case loginTextField.text!.isValidEmail() && passwordTextField.text != password:
+            warningLabel.text = "Введен невалидный логин!"
+            warningLabel.isHidden = false
+        case loginTextField.text != login && passwordTextField.text != password:
             let controller = UIAlertController(title: "Error", message: "Wrong login or password", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .cancel)
             controller.addAction(alertAction)
             present(controller, animated: true)
-           
-        } else {
+        case loginTextField.text == login && passwordTextField.text == password:
             navigationController?.pushViewController(profileVc, animated: true)
+        default:
+            break
         }
-        
     }
     
     //MARK: - ScrollView function
@@ -171,7 +176,6 @@ class LogInViewController: UIViewController{
         DispatchQueue.main.async {
             self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:  ks.height - self.view.safeAreaInsets.bottom + 105, right: 0)
         }
-        
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
@@ -199,7 +203,6 @@ class LogInViewController: UIViewController{
         stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16).isActive = true
         stackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -16).isActive = true
         
         warningLabel.translatesAutoresizingMaskIntoConstraints = false
         warningLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16).isActive = true

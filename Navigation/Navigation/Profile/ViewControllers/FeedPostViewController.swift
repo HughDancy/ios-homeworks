@@ -15,8 +15,8 @@ class FeedPostViewController: UIViewController {
        let label = UILabel()
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 22)
         label.textColor = .black
-        label.numberOfLines = 0
-        label.lineBreakStrategy = .standard
+        label.lineBreakMode = .byClipping
+        label.numberOfLines = 3
         
         return label
     }()
@@ -33,6 +33,7 @@ class FeedPostViewController: UIViewController {
         textView.textAlignment = .justified
         textView.font = UIFont(name: "HelveticaNeue", size: 16.0)
         textView.textColor = .black
+        textView.showsVerticalScrollIndicator = false
         
         return textView
     }()
@@ -68,6 +69,7 @@ class FeedPostViewController: UIViewController {
         titleOfNews.translatesAutoresizingMaskIntoConstraints = false
         titleOfNews.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
         titleOfNews.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        titleOfNews.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         
         imageOfNews.translatesAutoresizingMaskIntoConstraints = false
         imageOfNews.topAnchor.constraint(equalTo: titleOfNews.bottomAnchor, constant: 15).isActive = true
