@@ -45,11 +45,16 @@ class LogInViewController: UIViewController{
         let textField = UITextField()
         textField.placeholder = "Email or number of phone"
         textField.textColor = .black
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.backgroundColor = .systemGray6
+        textField.returnKeyType = .done
+        textField.enablesReturnKeyAutomatically = true
+        textField.clearButtonMode = .always
+        textField.autocapitalizationType = .none
+        textField.becomeFirstResponder()
         
         return textField
     }()
@@ -60,11 +65,15 @@ class LogInViewController: UIViewController{
         textField.isSecureTextEntry = true
         textField.textColor = .black
         textField.autocapitalizationType = .none
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.backgroundColor = .systemGray6
+        textField.returnKeyType = .done
+        textField.enablesReturnKeyAutomatically = true
+        textField.clearButtonMode = .always
+        textField.autocapitalizationType = .none
         
     return textField
     }()
@@ -149,14 +158,15 @@ class LogInViewController: UIViewController{
             stackView.layer.add(animation, forKey: "position")
             warningLabel.text = "Полня логина и пароля не дозаполнены!"
             warningLabel.isHidden = false
-        case loginTextField.text!.isValidEmail() && passwordTextField.text != password:
+        case loginTextField.text!.isValidEmail() == false:
             warningLabel.text = "Введен невалидный логин!"
             warningLabel.isHidden = false
         case loginTextField.text != login && passwordTextField.text != password:
-            let controller = UIAlertController(title: "Error", message: "Wrong login or password", preferredStyle: .alert)
+            let controller = UIAlertController(title: "Error", message: "Wrong login or password. Right: log - user@mail.com, pass - 1234 ", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .cancel)
             controller.addAction(alertAction)
             present(controller, animated: true)
+            warningLabel.isHidden = true
         case loginTextField.text == login && passwordTextField.text == password:
             navigationController?.pushViewController(profileVc, animated: true)
         default:
