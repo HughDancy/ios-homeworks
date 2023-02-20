@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
-    
+        
         view.backgroundColor = .systemGray6
         title = "Profile"
     }
@@ -60,10 +60,10 @@ class ProfileViewController: UIViewController {
         postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         postTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-
+    
 }
 
-  //MARK: - TableView Extension
+//MARK: - TableView Extension
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -93,9 +93,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderView
         return section == 0 ? headerView : nil
-        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = FeedPostViewController()
@@ -108,6 +108,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {  (contextualAction, view, boolValue) in
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -116,20 +117,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         deleteAction.backgroundColor = .systemGray6
         deleteAction.image = UIImage(named: "deleteIcon")
-                
+        
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         swipeActions.performsFirstActionWithFullSwipe = true
-        return swipeActions
-    }
-    
-    @objc func tapLike() {
-        print("Blyaha muha!!!")
+        
+        if indexPath.section == 1 {
+            return swipeActions
+        } else {
+            let swipeNonAction = UISwipeActionsConfiguration()
+            return swipeNonAction
+        }
     }
 }
 
 extension ProfileViewController: TapLike {
     func toTap() {
         postTable.reloadData()
-      
+        
     }
 }
