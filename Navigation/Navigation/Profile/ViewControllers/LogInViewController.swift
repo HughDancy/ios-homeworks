@@ -148,7 +148,7 @@ class LogInViewController: UIViewController{
         let profileVc = ProfileViewController()
         
         switch (loginTextField.text != nil) && (passwordTextField.text != nil)  {
-        case  (loginTextField.text == "") == true || (passwordTextField.text == "") == true || loginTextField.text!.count < 6 && passwordTextField.text!.count < 4 :
+        case  (loginTextField.text == "") == true || (passwordTextField.text == "") == true :
             let animation = CABasicAnimation(keyPath: "position")
             animation.duration = 0.07
             animation.repeatCount = 4
@@ -156,6 +156,7 @@ class LogInViewController: UIViewController{
             animation.fromValue = NSValue(cgPoint: CGPoint(x: stackView.center.x - 10, y: stackView.center.y))
             animation.toValue = NSValue(cgPoint: CGPoint(x: stackView.center.x + 10, y: stackView.center.y))
             stackView.layer.add(animation, forKey: "position")
+        case loginTextField.text!.count < 6 && passwordTextField.text!.count < 4 :
             warningLabel.text = "Полня логина и пароля не дозаполнены!"
             warningLabel.isHidden = false
         case loginTextField.text!.isValidEmail() == false:
