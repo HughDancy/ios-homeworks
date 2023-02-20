@@ -148,7 +148,7 @@ class LogInViewController: UIViewController{
         let profileVc = ProfileViewController()
         
         switch (loginTextField.text != nil) && (passwordTextField.text != nil)  {
-        case  (loginTextField.text == "") == true && (passwordTextField.text == "") == true || loginTextField.text!.count < 6 && passwordTextField.text!.count < 4 :
+        case  (loginTextField.text == "") == true || (passwordTextField.text == "") == true || loginTextField.text!.count < 6 && passwordTextField.text!.count < 4 :
             let animation = CABasicAnimation(keyPath: "position")
             animation.duration = 0.07
             animation.repeatCount = 4
