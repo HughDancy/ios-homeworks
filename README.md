@@ -1,0 +1,7 @@
+# iOS - Homeworks
+Сборник выполненных домашних заданий во времмя прохождения курса Нетологии по iOS разработке. Итоговый результат: многоэкранное приложение, в котором есть простой экран логина в стиле VK, с проверкой на корректность введенных данных, а также валидации email; главный экран профиля с данными пользователя, его новостной лентой и галлерея сохраненных фото. Пост состоит из изображения, заголовка, соркащенного текста новости, а также счетчик лайков и просмотров. По тапу на лайк - количество лайков увеличивается. По тапу на пост открывается детальная информация - картинка и полный текст новости. При этом количество просмотров поста увеличивается. В галерее по тапу на определенную картинку открывается превью с увеличенным изображением
+
+# Примеры
+
+<img src="https://github.com/HughDancy/ios-homeworks/blob/main/Navigation/Navigation/Resources/Screens/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202024-08-23%20at%2015.44.06.png" width="380"> <img src="https://github.com/HughDancy/ios-homeworks/blob/main/Navigation/Navigation/Resources/Screens/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202024-08-23%20at%2015.45.41.png" width="380">
+<img src="https://github.com/HughDancy/ios-homeworks/blob/main/Navigation/Navigation/Resources/Screens/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202024-08-23%20at%2015.46.34.png" width="380"> <img src="https://github.com/HughDancy/ios-homeworks/blob/main/Navigation/Navigation/Resources/Screens/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202024-08-23%20at%2015.46.40.png" width="380">
