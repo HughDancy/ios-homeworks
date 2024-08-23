@@ -38,9 +38,9 @@ class PostTableViewCell: UITableViewCell {
     
     lazy var postText: UITextView = {
         let postText = UITextView()
-        postText.textColor = .systemGray
-        postText.font = UIFont(name: "system", size: 14)
-        postText.textAlignment = .left
+        postText.textColor = .black
+        postText.font = UIFont(name: "HelveticaNeue", size: 14)
+        postText.textAlignment = .justified
         postText.isEditable = false
         postText.isScrollEnabled = false
         
@@ -52,7 +52,7 @@ class PostTableViewCell: UITableViewCell {
         var numbers = 0
         likes.text = "Likes: \(numbers)"
         likes.textColor = .black
-        likes.font = UIFont(name: "system", size: 16)
+        likes.font = UIFont(name: "system", size: 13)
         likes.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapToLike)))
         likes.isUserInteractionEnabled = true
 
@@ -98,15 +98,15 @@ class PostTableViewCell: UITableViewCell {
         postText.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16).isActive = true
         postText.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         postText.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        postText.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        postText.bottomAnchor.constraint(equalTo: likes.topAnchor, constant: -15).isActive = true
         
         likes.translatesAutoresizingMaskIntoConstraints = false
-        likes.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 20).isActive = true
+        likes.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 15).isActive = true
         likes.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         likes.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
         views.translatesAutoresizingMaskIntoConstraints = false
-        views.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 20).isActive = true
+        views.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 15).isActive = true
         views.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         views.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
